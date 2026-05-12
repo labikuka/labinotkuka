@@ -193,7 +193,12 @@ header {
   border-top: 1px solid rgba(0, 212, 255, 0.1);
   align-items: center;
 }
-.sign-in { color: var(--text-primary); font-weight: 500; }
+.sign-in {
+    color: var(--text-primary);
+    font-weight: 500;
+    padding: 0 25px;
+    display: inline-block;
+}
 
 .btn-nav-cta {
   display: inline-block;
