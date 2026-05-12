@@ -221,10 +221,10 @@ header {
   box-shadow: 0 0 10px rgba(0,212,255,0.5);
 }
 }
+
 .btn-nav-cta:hover {
-  background-color: #33ddff;
-  color: #020810;
-  box-shadow: 0 0 18px rgba(0,212,255,0.75);
+  background-color: #00d4ff;
+  box-shadow: 0 0 5px rgba(0,212,255,0.3);
   text-decoration: none;
 }
 
