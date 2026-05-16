@@ -12,13 +12,16 @@
   --danger: #ff4757;
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
-  --h1: clamp(2rem, 7vw, 4.5rem); /* Zvogëluar që të mos shtrydhet në telefon */
-  --h2: clamp(1.8rem, 4vw, 3rem);
-  --h3: clamp(1.4rem, 2.5vw, 2rem);
+  
+  /* Shkrimet ne telefon do te nisin nga vlerat e para (me te vogla qe te kene vend) */
+  --h1: clamp(1.8rem, 6vw, 4.5rem); 
+  --h2: clamp(1.5rem, 4vw, 3rem);
+  --h3: clamp(1.3rem, 2.5vw, 2rem);
   --h4: clamp(1.1rem, 2vw, 1.4rem);
+  
   --p-text: 1rem;
   --p-small: 0.875rem;
-  --section-padding: 5rem 1.5rem;
+  --section-padding: 3rem 1rem; /* Me pak hapesire lart/poshte ne telefon */
   --container-max: 1200px;
   --transition: all 0.3s ease;
   --radius-sm: 0.5rem;
@@ -26,6 +29,7 @@
   --radius-lg: 2rem;
 }
 
+/* --- RREGULLAT THEMELORE --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
@@ -33,42 +37,38 @@ body {
   font-family: var(--font-body);
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  line-height: 1.4; /* Pak më i ngjeshur rreshti që të rrijë bukur */
+  line-height: 1.4;
   overflow-x: hidden;
   width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  line-height: 1.1;
+  line-height: 1.2;
   font-weight: 800;
   color: var(--text-primary);
   margin-bottom: 1rem;
-  text-align: left !important;
+  text-align: left;
 }
 
-h1 { font-size: var(--h1); letter-spacing: -0.03em; width: 100%; }
-h2 { font-size: var(--h2); }
-h3 { font-size: var(--h3); }
-h4 { font-size: var(--h4); }
-p { font-size: var(--p-text); color: var(--text-secondary); margin-bottom: 1.5rem; text-align: left !important; width: 100%; }
+h1 { font-size: var(--h1); letter-spacing: -0.02em; }
+p { font-size: var(--p-text); color: var(--text-secondary); margin-bottom: 1.5rem; text-align: left; }
 a { text-decoration: none; color: var(--accent-color); transition: var(--transition); }
 ul { list-style: none; }
-img { max-width: 100%; height: auto; display: block; }
 
-.container { width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 1.5rem; }
+.container { width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 1rem; }
 section { padding: var(--section-padding); width: 100%; }
 
-/* Grid Systems */
-.grid-2, .grid-3, .grid-4 { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+/* Ne telefon, cdo grid detyrohet te jete vetem me 1 kolone */
+.grid-2, .grid-3, .grid-4 { display: grid; grid-template-columns: 1fr !important; gap: 2rem; }
 
-/* Header & Nav */
+/* --- HEADER & NAV (TELEFON) --- */
 header {
   position: fixed;
   top: 0; left: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba(8, 12, 20, 0.9);
+  background: rgba(8, 12, 20, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(0, 212, 255, 0.1);
@@ -78,50 +78,63 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.5rem;
-  max-width: var(--container-max);
-  margin: 0 auto;
+  padding: 0.75rem 1rem;
 }
 
-.nav-links { 
-  display: none; /* Fshihet në telefon deri sa të klikohet menuja */
-  flex-direction: column; 
-  gap: 1.5rem; 
-}
+.nav-links { display: none; } /* Fshihet ne telefon */
+.nav-auth { display: none; }  /* Fshihet ne telefon */
 
-.nav-links.active {
-  display: flex !important; /* Shfaqet kur shtohet klasa .active nga JS */
-}
-
-.nav-auth { display: none; } /* Fshihet në telefon për t'u futur brenda menusë më vonë */
-
-/* IKONA E MENUSË (Tani shfaqet në telefon) */
+/* IKONA E MENUSË (Hamburger) */
 .menu-toggle {
-  display: block !important; /* Detyrohet të shfaqet në telefon */
+  display: flex !important; /* Detyrohet te shfaqet ne telefon */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0;
   z-index: 1001;
 }
 
 .menu-toggle span {
   display: block;
-  width: 25px;
+  width: 100%;
   height: 2px;
-  background: var(--accent-color);
-  margin-bottom: 5px;
+  background-color: var(--accent-color);
   transition: var(--transition);
 }
 
-.sign-in {
-  color: var(--text-primary);
-  font-weight: 500;
-  padding: 0 40px;
-  text-decoration: none;
-  display: inline-block;
+/* --- HERO SECTION (RREGULLIMI TOTAL PËR TELEFON) --- */
+.hero {
+  padding: 7rem 1rem 3rem !important;
+  min-height: 100vh;
+  display: block !important; /* Shkaterron flex-in ose grid-in qe ta mbante tekstin djathtas */
+  width: 100% !important;
 }
 
+.hero-grid { 
+  display: block !important; /* Nese ke pasur hero-grid ne HTML, e kthen ne bllok te thjeshte */
+}
+
+.hero .container {
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.hero-content {
+  width: 100% !important;
+  max-width: 100% !important;
+  text-align: left !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Butonat e menus se vjeter */
+.sign-in { color: var(--text-primary); font-weight: 500; padding: 0 40px; display: inline-block; }
 .btn-nav-cta {
   display: inline-block;
   padding: 0.5rem 2.5rem;
@@ -135,53 +148,31 @@ header {
   box-shadow: 0 0 10px rgba(0,212,255,0.5);
 }
 
-/* --- HERO SECTION (RREGULLIM TOTAL I SHTRIRJES) --- */
-.hero {
-  padding: 8rem 1rem 4rem !important;
-  min-height: 100vh;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  position: relative;
-  width: 100% !important;
-  text-align: left !important;
-}
-
-/* Ky rregull ndalon tekstin të shtrydhet në mes */
-.hero .container, 
-.hero-content {
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  text-align: left !important;
-  align-items: flex-start !important;
-}
-
 /* --- MEDIA QUERIES PËR PC (Mbi 1200px) --- */
 @media (min-width: 1200px) {
-  .menu-toggle { display: none !important; } /* Fshihet ikona në PC */
+  --section-padding: 5rem 1.5rem;
   
-  .nav-links { 
-    display: flex !important; 
-    flex-direction: row !important; 
+  .menu-toggle { display: none !important; } /* Fshihet hamburgeri ne PC */
+  
+  .nav-links { display: flex !important; flex-direction: row !important; gap: 2rem; }
+  .nav-auth { display: flex !important; flex-direction: row !important; gap: 1rem; align-items: center; }
+  
+  .grid-2 { grid-template-columns: repeat(2, 1fr) !important; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr) !important; }
+  .grid-4 { grid-template-columns: repeat(4, 1fr) !important; }
+
+  .hero {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: 8rem 1.5rem 5rem !important;
   }
   
-  .nav-auth { 
-    display: flex !important; 
-    flex-direction: row !important; 
-  }
-  
-  .hero { padding: 8rem 1.5rem 5rem !important; }
-  
-  .hero .container { 
-    margin: 0 auto !important; 
-    max-width: var(--container-max) !important; 
+  .hero .container {
+    margin: 0 auto !important;
+    padding: 0 1.5rem !important;
+    max-width: var(--container-max) !important;
   }
   
   .hero-content { max-width: 750px !important; }
-  
-  .grid-2 { grid-template-columns: repeat(2, 1fr); }
-  .grid-3 { grid-template-columns: repeat(3, 1fr); }
-  .grid-4 { grid-template-columns: repeat(4, 1fr); }
 }
