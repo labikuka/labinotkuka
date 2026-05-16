@@ -12,16 +12,13 @@
   --danger: #ff4757;
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
-  
-  /* Shkrimet ne telefon do te nisin nga vlerat e para (me te vogla qe te kene vend) */
   --h1: clamp(1.8rem, 6vw, 4.5rem); 
   --h2: clamp(1.5rem, 4vw, 3rem);
   --h3: clamp(1.3rem, 2.5vw, 2rem);
   --h4: clamp(1.1rem, 2vw, 1.4rem);
-  
   --p-text: 1rem;
   --p-small: 0.875rem;
-  --section-padding: 3rem 1rem; /* Me pak hapesire lart/poshte ne telefon */
+  --section-padding: 3rem 1rem;
   --container-max: 1200px;
   --transition: all 0.3s ease;
   --radius-sm: 0.5rem;
@@ -29,7 +26,7 @@
   --radius-lg: 2rem;
 }
 
-/* --- RREGULLAT THEMELORE --- */
+/* --- BASE --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
@@ -50,7 +47,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1rem;
   text-align: left;
 }
-
 h1 { font-size: var(--h1); letter-spacing: -0.02em; }
 p { font-size: var(--p-text); color: var(--text-secondary); margin-bottom: 1.5rem; text-align: left; }
 a { text-decoration: none; color: var(--accent-color); transition: var(--transition); }
@@ -58,11 +54,9 @@ ul { list-style: none; }
 
 .container { width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 1rem; }
 section { padding: var(--section-padding); width: 100%; }
-
-/* Ne telefon, cdo grid detyrohet te jete vetem me 1 kolone */
 .grid-2, .grid-3, .grid-4 { display: grid; grid-template-columns: 1fr !important; gap: 2rem; }
 
-/* --- HEADER & NAV (TELEFON) --- */
+/* --- HEADER & FIXED NAVBAR --- */
 header {
   position: fixed;
   top: 0; left: 0;
@@ -78,101 +72,3 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 1rem;
-}
-
-.nav-links { display: none; } /* Fshihet ne telefon */
-.nav-auth { display: none; }  /* Fshihet ne telefon */
-
-/* IKONA E MENUSË (Hamburger) */
-.menu-toggle {
-  display: flex !important; /* Detyrohet te shfaqet ne telefon */
-  flex-direction: column;
-  justify-content: space-between;
-  width: 24px;
-  height: 18px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 1001;
-}
-
-.menu-toggle span {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background-color: var(--accent-color);
-  transition: var(--transition);
-}
-
-/* --- HERO SECTION (RREGULLIMI TOTAL PËR TELEFON) --- */
-.hero {
-  padding: 7rem 1rem 3rem !important;
-  min-height: 100vh;
-  display: block !important; /* Shkaterron flex-in ose grid-in qe ta mbante tekstin djathtas */
-  width: 100% !important;
-}
-
-.hero-grid { 
-  display: block !important; /* Nese ke pasur hero-grid ne HTML, e kthen ne bllok te thjeshte */
-}
-
-.hero .container {
-  padding: 0 !important;
-  margin: 0 !important;
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-.hero-content {
-  width: 100% !important;
-  max-width: 100% !important;
-  text-align: left !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Butonat e menus se vjeter */
-.sign-in { color: var(--text-primary); font-weight: 500; padding: 0 40px; display: inline-block; }
-.btn-nav-cta {
-  display: inline-block;
-  padding: 0.5rem 2.5rem;
-  border-radius: 4px;
-  font-family: var(--font-heading);
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: #020810;
-  background-color: #00d4ff;
-  border: none;
-  box-shadow: 0 0 10px rgba(0,212,255,0.5);
-}
-
-/* --- MEDIA QUERIES PËR PC (Mbi 1200px) --- */
-@media (min-width: 1200px) {
-  --section-padding: 5rem 1.5rem;
-  
-  .menu-toggle { display: none !important; } /* Fshihet hamburgeri ne PC */
-  
-  .nav-links { display: flex !important; flex-direction: row !important; gap: 2rem; }
-  .nav-auth { display: flex !important; flex-direction: row !important; gap: 1rem; align-items: center; }
-  
-  .grid-2 { grid-template-columns: repeat(2, 1fr) !important; }
-  .grid-3 { grid-template-columns: repeat(3, 1fr) !important; }
-  .grid-4 { grid-template-columns: repeat(4, 1fr) !important; }
-
-  .hero {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    padding: 8rem 1.5rem 5rem !important;
-  }
-  
-  .hero .container {
-    margin: 0 auto !important;
-    padding: 0 1.5rem !important;
-    max-width: var(--container-max) !important;
-  }
-  
-  .hero-content { max-width: 750px !important; }
-}
