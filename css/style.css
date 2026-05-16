@@ -144,16 +144,23 @@ header {
   transform: none;
 }
 
-/* Hero Section */
 .hero {
   padding: 8rem 1.5rem 5rem;
   min-height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: flex-start; /* E detyron permbajtjen te filloje nga e majta */
   position: relative;
+  width: 100%;
 }
 
-.hero-content { position: relative; z-index: 1; max-width: 750px; }
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%; /* I thote tekstrit te marre 100% te gjeresise ne telefon */
+  max-width: 750px;
+  text-align: left; /* Sigurohet qe rreshtat nisin nga e majta */
+}
 
 /* Media Queries */
 @media (min-width: 768px) {
